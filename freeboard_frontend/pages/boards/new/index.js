@@ -22,6 +22,7 @@ import {
     SubmitButton,
     Error
 } from '../../../styles/emotion'
+import { useState } from 'react'
 
 export default function BoardsNewPage(){
     const [writer, setWriter] = useState("");
@@ -36,32 +37,44 @@ export default function BoardsNewPage(){
 
     const onChangeWriter = (event) => {
       setWriter(event.target.value);
+      if (event.target.value !== "") {
+        setWriterError("");
+      }
     };
   
     const onChangePassword = (event) => {
       setPassword(event.target.value);
+      if (event.target.value !== "") {
+        setPasswordError("");
+      }
     };
   
     const onChangeTitle = (event) => {
       setTitle(event.target.value);
+      if (event.target.value !== "") {
+        setTitleError("");
+      }
     };
   
     const onChangeContents = (event) => {
       setContents(event.target.value);
+      if (event.target.value !== "") {
+        setContentsError("");
+      }
     };
 
     const onClickSubmit = async () => {
       if (writer === "") {
-        setMyWriterError("작성자를 입력해주세요.");
+        setWriterError("작성자를 입력해주세요.");
       }
       if (password === "") {
-        setMyPasswordError("비밀번호를 입력해주세요.");
+        setPasswordError("비밀번호를 입력해주세요.");
       }
       if (title === "") {
-        setMyTitleError("제목을 입력해주세요.");
+        setTitleError("제목을 입력해주세요.");
       }
       if (contents === "") {
-        setMyContentsError("내용을 입력해주세요.");
+        setContentsError("내용을 입력해주세요.");
       }
       if(writer !== "" && password !== "" && title !== "" && contents !== "") {
         alert("게시물 등록에 성공하였습니다!")

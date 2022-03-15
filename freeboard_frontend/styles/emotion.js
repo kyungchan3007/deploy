@@ -163,6 +163,7 @@ export const SubmitButton = styled.button`
   font-weight: 500;
   margin-left: 12px;
   margin-right: 12px;
+  cursor: pointer;
 `;
 
 export const Error = styled.div`
