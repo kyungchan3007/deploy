@@ -23,6 +23,15 @@ import {
     Error
 } from '../../../styles/emotion'
 import { useState } from 'react'
+import { useMutation, gql } from '@apollo/client'
+
+export const CREATE_BOARD = gql`
+  mutation createBoard($createBoardInput: CreateBoardInput!) {
+    createBoard(createBoardInput: $createBoardInput) {
+      _id
+    }
+  }
+`;
 
 export default function BoardsNewPage(){
     const [writer, setWriter] = useState("");
@@ -34,6 +43,8 @@ export default function BoardsNewPage(){
     const [passwordError, setPasswordError] = useState("");
     const [titleError, setTitleError] = useState("");
     const [contentsError, setContentsError] = useState("");
+
+    const [createBoard] = useMutation(CREATE_BOARD);
 
     const onChangeWriter = (event) => {
       setWriter(event.target.value);
@@ -77,7 +88,22 @@ export default function BoardsNewPage(){
         setContentsError("내용을 입력해주세요.");
       }
       if(writer !== "" && password !== "" && title !== "" && contents !== "") {
-        alert("게시물 등록에 성공하였습니다!")
+        try {
+          const result = await createBoard({
+            variables: {
+              createBoardInput: {
+                writer: writer,
+                password: password,
+                title: title,
+                contents: contents
+              }
+            }
+          })
+          console.log(result)
+          alert("게시물 등록에 성공하였습니다!")
+        } catch(error) {
+          console.log(error.message)
+        }
       }
     };
 
