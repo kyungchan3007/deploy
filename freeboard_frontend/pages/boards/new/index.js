@@ -1,27 +1,4 @@
-import {
-  Wrapper,
-  Title,
-  WriterWrapper,
-  Writer,
-  Password,
-  Label,
-  InputWrapper,
-  Subject,
-  Contents,
-  ZipcodeWrapper,
-  Zipcode,
-  SearchButton,
-  Address,
-  Youtube,
-  ImageWrapper,
-  UploadButton,
-  OptionWrapper,
-  RadioButton,
-  RadioLabel,
-  ButtonWrapper,
-  SubmitButton,
-  Error,
-} from "../../../styles/emotion";
+import * as MyStyles from "../../../styles/emotion";
 import { useState } from "react";
 import { useMutation, gql } from "@apollo/client";
 import { useRouter } from "next/router";
@@ -112,7 +89,7 @@ export default function BoardsNewPage() {
   };
 
   return (
-    <Wrapper>
+    <MyStyles.WrapperWrapper>
       <Title>게시판 등록</Title>
       <WriterWrapper>
         <InputWrapper>
@@ -180,6 +157,6 @@ export default function BoardsNewPage() {
       <ButtonWrapper>
         <SubmitButton onClick={onClickSubmit}>등록하기</SubmitButton>
       </ButtonWrapper>
-    </Wrapper>
+    </MyStyles.WrapperWrapper>
   );
 }
