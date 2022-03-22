@@ -43,17 +43,17 @@ export default function MapBoardPage(){
     return (
         <div>
             {data?.fetchBoards.map((el) => (
-                // <Fragment key={el.number}>
-                <Row key={el.number}>
-                    <Column><input type="checkbox" /></Column>
-                    <Column>{el.number}</Column>
-                    <Column>{el.writer}</Column>
-                    <Column>{el.title}</Column>
-                    <Column>
-                        <button id={el.number} onClick={onClickDelete}>삭제</button>
-                    </Column>
-                </Row>
-            ))}
+                    // <Fragment key={el.number}>
+                    <Row key={el.number}>
+                        <Column><input type="checkbox" /></Column>
+                        <Column>{el.number}</Column>
+                        <Column>{el.writer}</Column>
+                        <Column>{el.title}</Column>
+                        <Column>
+                            <button id={el.number} onClick={onClickDelete}>삭제</button>
+                        </Column>
+                    </Row>
+                ))}
         </div>
     )
 
