@@ -25,7 +25,8 @@ export default function BoardWrite() {
       setWriterError("");
     }
 
-    if (event.target.value !== "" && password !== "" && title !== "" && contents !== "") {
+    // if (event.target.value !== "" && password !== "" && title !== "" && contents !== "") {
+    if (event.target.value && password && title && contents) {
       setIsActive(true);
     } else {
       setIsActive(false);
@@ -38,7 +39,8 @@ export default function BoardWrite() {
       setPasswordError("");
     }
 
-    if (writer !== "" && event.target.value !== "" && title !== "" && contents !== "") {
+    // if (writer !== "" && event.target.value !== "" && title !== "" && contents !== "") {
+    if (writer && event.target.value && title && contents) {
       setIsActive(true);
     } else {
       setIsActive(false);
@@ -51,7 +53,8 @@ export default function BoardWrite() {
       setTitleError("");
     }
 
-    if (writer !== "" && password !== "" && event.target.value !== "" && contents !== "") {
+    // if (writer !== "" && password !== "" && event.target.value !== "" && contents !== "") {
+    if (writer && password && event.target.value && contents) {
       setIsActive(true);
     } else {
       setIsActive(false);
@@ -64,7 +67,8 @@ export default function BoardWrite() {
       setContentsError("");
     }
 
-    if (writer !== "" && password !== "" && title !== "" && event.target.value !== "") {
+    // if (writer !== "" && password !== "" && title !== "" && event.target.value !== "") {
+    if (writer && password && title && event.target.value) {
       setIsActive(true);
     } else {
       setIsActive(false);
