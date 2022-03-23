@@ -7,11 +7,17 @@ export default function BoardList() {
   const router = useRouter();
   const { data } = useQuery(FETCH_BOARDS);
 
-  function onClickMoveToBoardNew() {
+  const onClickMoveToBoardNew = () => {
     router.push("/boards/new");
   }
 
-  function onClickMoveToBoardDetail(event) {
+  const onClickMoveToBoardDetail = (event) => {
+    // event.target // 태그전체
+    // event.target.value
+    // event.target.id
+
+    // document.getElementById("bbb").value
+
     router.push(`/boards/${event.target.id}`);
   }
 
