@@ -1,8 +1,9 @@
 // 여기는 프리젠터 컴포넌트
 
 import {SubmitButton, WriterInput} from './BoardWrite.styles'
+import { IBoardWriteUIProps } from './BoardWrite.types'
 
-export default function BoardWriteUI(props){
+export default function BoardWriteUI(props: IBoardWriteUIProps){
     return (
         <div>
             {/* <div>{data}</div> */}

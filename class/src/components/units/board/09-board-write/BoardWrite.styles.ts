@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
+import { ISubmitButtonProps } from './BoardWrite.types'
 
 export const SubmitButton = styled.button`
-    background-color: ${(props) => props.isActive ? "yellow" : "none"};
+    background-color: ${(props: ISubmitButtonProps) => props.isActive ? "yellow" : "none"};
 `
 
 export const WriterInput = styled.input`

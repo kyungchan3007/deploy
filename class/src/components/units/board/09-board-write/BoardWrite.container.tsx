@@ -1,12 +1,13 @@
 // 여기는 컨테이너 컴포넌트
 
-import { useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import { useMutation } from '@apollo/client'
 import BoardWriteUI from './BoardWrite.presenter'
 import { CREATE_BOARD, UPDATE_BOARD } from './BoardWrite.queries'
 import { useRouter } from 'next/router'
+import { IBoardWriteProps, IMyVariables } from './BoardWrite.types'
 
-export default function BoardWrite(props){
+export default function BoardWrite(props: IBoardWriteProps){
     const router = useRouter()
     const [isActive, setIsActive] = useState(false)
 
@@ -19,8 +20,7 @@ export default function BoardWrite(props){
     const [updateBoard] = useMutation(UPDATE_BOARD)
     
     const onClickUpdate = async () => {
-        const myVariables = { number: Number(router.query.mynumber) }
-
+        const myVariables: IMyVariables = { number: Number(router.query.mynumber) }
         if (myWriter !== "") myVariables.writer = myWriter
         if (myTitle !== "") myVariables.title = myTitle
         if (myContents !== "") myVariables.contents = myContents
@@ -48,7 +48,7 @@ export default function BoardWrite(props){
         router.push(`/09-01-boards/${result.data.createBoard.number}`)
     }
     
-    const onChangeWriter = (event) => {
+    const onChangeWriter = (event: ChangeEvent<HTMLInputElement>) => {
         setMyWriter(event.target.value)
 
         if(event.target.value !== "" && myTitle !== "" && myContents !== ""){
@@ -58,7 +58,7 @@ export default function BoardWrite(props){
         }
     }
     
-    const onChangeTitle = (event) => {
+    const onChangeTitle = (event: ChangeEvent<HTMLInputElement>) => {
         setMyTitle(event.target.value)
 
         if(myWriter !== "" && event.target.value !== "" && myContents !== ""){
@@ -68,7 +68,7 @@ export default function BoardWrite(props){
         }
     }
     
-    const onChangeContents = (event) => {
+    const onChangeContents = (event: ChangeEvent<HTMLInputElement>) => {
         setMyContents(event.target.value)
 
         if(myWriter !== "" && myTitle !== "" && event.target.value !== ""){
