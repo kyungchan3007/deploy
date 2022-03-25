@@ -130,7 +130,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       await updateBoard({
         variables: {
           boardId: router.query.boardId,
-          password: password,
+          password,
           updateBoardInput
         },
       });

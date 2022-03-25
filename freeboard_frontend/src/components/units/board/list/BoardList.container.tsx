@@ -18,7 +18,6 @@ export default function BoardList() {
     // event.target.id
 
     // document.getElementById("bbb").value
-
     if(event.target instanceof Element) router.push(`/boards/${event.target.id}`);
   }
 
