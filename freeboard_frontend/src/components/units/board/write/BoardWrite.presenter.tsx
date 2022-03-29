@@ -12,7 +12,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
             type="text"
             placeholder="이름을 적어주세요."
             onChange={props.onChangeWriter}
-            defaultValue={props.data?.fetchBoard.writer}
+            defaultValue={props.data?.fetchBoard.writer || ""}
             readOnly={!!props.data?.fetchBoard.writer}
           />
           <S.Error>{props.writerError}</S.Error>
@@ -57,7 +57,11 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
       </S.InputWrapper>
       <S.InputWrapper>
         <S.Label>유튜브</S.Label>
-        <S.Youtube placeholder="링크를 복사해주세요." />
+        <S.Youtube
+          placeholder="링크를 복사해주세요."
+          onChange={props.onChangeYoutubeUrl}
+          defaultValue={props.data?.fetchBoard.youtubeUrl || ""}
+        />
       </S.InputWrapper>
       <S.ImageWrapper>
         <S.Label>사진첨부</S.Label>
@@ -73,7 +77,7 @@ export default function BoardWriteUI(props: IBoardWriteUIProps) {
         <S.RadioLabel htmlFor="image">사진</S.RadioLabel>
       </S.OptionWrapper>
       <S.ButtonWrapper>
-        <S.SubmitButton 
+        <S.SubmitButton
           onClick={props.isEdit ? props.onClickUpdate : props.onClickSubmit}
           isActive={props.isEdit ? true : props.isActive}
         >

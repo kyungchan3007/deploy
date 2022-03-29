@@ -1,5 +1,5 @@
 import BoardWrite from "../../../../src/components/units/board/write/BoardWrite.container";
-import { gql, useQuery } from '@apollo/client'
+import { gql, useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 
 const FETCH_BOARD = gql`
@@ -8,15 +8,16 @@ const FETCH_BOARD = gql`
       writer
       title
       contents
+      youtubeUrl
     }
   }
 `;
 
 export default function BoardsEditPage() {
-    const router = useRouter()
-    const { data } = useQuery(FETCH_BOARD, {
-        variables: { boardId: router.query.boardId }
-    })
+  const router = useRouter();
+  const { data } = useQuery(FETCH_BOARD, {
+    variables: { boardId: router.query.boardId },
+  });
 
-    return <BoardWrite isEdit={true} data={data} />
+  return <BoardWrite isEdit={true} data={data} />;
 }

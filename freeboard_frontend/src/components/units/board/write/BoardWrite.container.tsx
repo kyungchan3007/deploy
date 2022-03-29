@@ -15,6 +15,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [password, setPassword] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [writerError, setWriterError] = useState("");
   const [passwordError, setPasswordError] = useState("");
@@ -77,6 +78,10 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   };
 
+  const onChangeYoutubeUrl = (event: ChangeEvent<HTMLInputElement>) => {
+    setYoutubeUrl(event.target.value);
+  };
+
   const onClickSubmit = async () => {
     if (writer === "") {
       setWriterError("작성자를 입력해주세요.");
@@ -95,10 +100,11 @@ export default function BoardWrite(props: IBoardWriteProps) {
         const result = await createBoard({
           variables: {
             createBoardInput: {
-              writer: writer,
-              password: password,
-              title: title,
-              contents: contents,
+              writer,
+              password,
+              title,
+              contents,
+              youtubeUrl,
             },
           },
         });
@@ -112,26 +118,27 @@ export default function BoardWrite(props: IBoardWriteProps) {
   };
 
   const onClickUpdate = async () => {
-    if (!title && !contents) {
-      alert("수정한 내용이 없습니다.")
+    if (!title && !contents && !youtubeUrl) {
+      alert("수정한 내용이 없습니다.");
       return;
     }
 
     if (!password) {
-      alert("비밀번호를 입력해주세요.")
+      alert("비밀번호를 입력해주세요.");
       return;
     }
 
-    const updateBoardInput: IUpdateBoardInput = {}
-    if(title) updateBoardInput.title = title
-    if(contents) updateBoardInput.contents = contents
+    const updateBoardInput: IUpdateBoardInput = {};
+    if (title) updateBoardInput.title = title;
+    if (contents) updateBoardInput.contents = contents;
+    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
 
     try {
       await updateBoard({
         variables: {
           boardId: router.query.boardId,
           password,
-          updateBoardInput
+          updateBoardInput,
         },
       });
       alert("게시물 수정에 성공하였습니다!");
@@ -152,6 +159,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       onChangePassword={onChangePassword}
       onChangeTitle={onChangeTitle}
       onChangeContents={onChangeContents}
+      onChangeYoutubeUrl={onChangeYoutubeUrl}
       onClickSubmit={onClickSubmit}
       onClickUpdate={onClickUpdate}
       isEdit={props.isEdit}
