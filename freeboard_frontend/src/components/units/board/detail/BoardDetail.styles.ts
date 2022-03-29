@@ -122,3 +122,5 @@ export const LikeCount = styled.div`
 export const DislikeCount = styled.div`
   color: #828282;
 `;
+
+export const LinkIcon = styled.img``;

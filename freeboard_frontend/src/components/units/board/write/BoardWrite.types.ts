@@ -10,6 +10,11 @@ export interface IUpdateBoardInput {
   title?: string;
   contents?: string;
   youtubeUrl?: string;
+  boardAddress?: {
+    zipcode?: string;
+    address?: string;
+    addressDetail?: string;
+  };
 }
 
 export interface ISubmitButtonProps {
@@ -27,8 +32,15 @@ export interface IBoardWriteUIProps {
   onChangeTitle: (event: ChangeEvent<HTMLInputElement>) => void;
   onChangeContents: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onChangeYoutubeUrl: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onClickAddressSearch: () => void;
+  onCompleteAddressSearch: (data: any) => void;
   onClickSubmit: () => void;
   onClickUpdate: () => void;
   isEdit: boolean;
   data?: Pick<IQuery, "fetchBoard">;
+  isOpen: boolean;
+  zipcode: string;
+  address: string;
+  addressDetail: string;
 }
