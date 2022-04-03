@@ -22,11 +22,19 @@ const MyColumn = styled.div`
 `;
 
 export default function MapBoardPage() {
+  const [count, setCount] = useState(0);
+
+  const onClickCount = () => {
+    setCount(0);
+  };
+
+  return <div onClick={onClickCount}>{count}</div>;
+
   const [myIndex, setMyIndex] = useState([
     false,
     false,
     false,
-    false,
+    true,
     false,
     false,
     false,
@@ -38,9 +46,7 @@ export default function MapBoardPage() {
 
   const onClickEdit = (event) => {
     const aaa = myIndex;
-    aaa[event.target.id] = true;
-    console.log(aaa);
-    setMyIndex([...aaa]);
+    aaa[3] = true;
   };
 
   return (
