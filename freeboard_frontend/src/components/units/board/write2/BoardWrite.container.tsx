@@ -6,6 +6,13 @@ import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import { IBoardWriteProps, IUpdateBoardInput } from "./BoardWrite.types";
 import { Modal } from "antd";
 
+const initialInputs = {
+  writer: "",
+  password: "",
+  title: "",
+  contents: "",
+};
+
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
   const [isActive, setIsActive] = useState(false);
@@ -14,18 +21,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [createBoard] = useMutation(CREATE_BOARD);
   const [updateBoard] = useMutation(UPDATE_BOARD);
 
-  const [inputs, setInputs] = useState({
-    writer: "",
-    password: "",
-    title: "",
-    contents: "",
-  });
-  const [inputErrors, setInputErrors] = useState({
-    writer: "",
-    password: "",
-    title: "",
-    contents: "",
-  });
+  const [inputs, setInputs] = useState(initialInputs);
+  const [inputErrors, setInputErrors] = useState(initialInputs);
 
   const [youtubeUrl, setYoutubeUrl] = useState("");
   const [zipcode, setZipcode] = useState("");
@@ -35,15 +32,22 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const onChangeInput = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    setInputs((prev) => ({
+      ...prev,
+      [event.target.id]: event.target.value,
+    }));
+
     const newInputs = {
       ...inputs,
       [event.target.id]: event.target.value,
     };
+    // 1. 저장
     setInputs(newInputs);
 
     if (event.target.value)
       setInputErrors((prev) => ({ ...prev, [event.target.id]: "" }));
 
+    // 2. 검증(버튼 활성화 검증)
     const isActive = Object.values(newInputs).every((el) => el);
     setIsActive(isActive);
   };
