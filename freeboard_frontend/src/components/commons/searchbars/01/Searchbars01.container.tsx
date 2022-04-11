@@ -4,7 +4,7 @@ import { ISearchbars01Props } from "./Searchbars01.types";
 import _ from "lodash";
 
 export default function Searchbars01(props: ISearchbars01Props) {
-  const getDebounce = _.debounce((data) => {
+  const getDebounce = _.debounce((data: string) => {
     props.refetch({ search: data, page: 1 });
     props.refetchBoardsCount({ search: data });
     props.onChangeKeyword(data);
