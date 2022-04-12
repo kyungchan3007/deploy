@@ -7,7 +7,6 @@ const FETCH_BOARDS = gql`
     fetchBoards {
       _id
       writer
-      title
     }
   }
 `;
