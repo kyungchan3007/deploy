@@ -7,10 +7,11 @@ import {
 import { createUploadLink } from "apollo-upload-client";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
-import { accessTokenState } from "../../../commons/store";
+import { accessTokenState, userInfoState } from "../../../commons/store";
 
 export default function ApolloSetting(props) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [, setUserInfo] = useRecoilState(userInfoState);
 
   // //////////////////////////////////////////////////////////////////
 
@@ -32,8 +33,10 @@ export default function ApolloSetting(props) {
 
   // 3. 세번째 방법!!!
   useEffect(() => {
-    const mylocalstorageAccessToken = localStorage.getItem("accessToken");
-    setAccessToken(mylocalstorageAccessToken || "");
+    const accessToken = localStorage.getItem("accessToken");
+    const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
+    setAccessToken(accessToken || "");
+    setUserInfo(userInfo);
   }, []);
 
   // 여기가 프리렌더링시 문제되는 코드!!!
