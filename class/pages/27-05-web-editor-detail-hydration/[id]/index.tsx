@@ -27,7 +27,7 @@ export default function WebEditorDetailPage() {
       {/* <div>내용: {data?.fetchBoard.contents}</div> */}
       {typeof window !== "undefined" ? (
         <div
-          style={{ color: "blue" }}
+          style={{ color: "blue" }} // 브라운색 - 서버의 CSS를 그대로 전달받음
           dangerouslySetInnerHTML={{
             __html: Dompurify.sanitize(data?.fetchBoard.contents),
           }}
