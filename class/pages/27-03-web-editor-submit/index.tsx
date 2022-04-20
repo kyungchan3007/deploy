@@ -29,7 +29,8 @@ export default function WebEditorPage() {
     console.log(value);
 
     // register로 등록하지 않고, 강제로 값을 넣어주는 기능!!
-    setValue("contents", value === "<p><br></p>" ? "" : value);
+    // setValue("contents", value === "<p><br></p>" ? "" : value);
+    setValue("contents", value.replace(/<.*?>/g, "").length ? value : "");
 
     // onChange 됐다고 react-hook-form에 알려주는 기능!!
     trigger("contents");
