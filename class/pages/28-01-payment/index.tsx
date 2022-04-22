@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
+// import Script from "next/script";
 
 declare const window: typeof globalThis & {
   IMP: any;
