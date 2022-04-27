@@ -7,13 +7,20 @@ import {
 import { onError } from "@apollo/client/link/error";
 import { createUploadLink } from "apollo-upload-client";
 import { useEffect } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValueLoadable } from "recoil";
 import { getAccessToken } from "../../../commons/libraries/getAccessToken";
-import { accessTokenState, userInfoState } from "../../../commons/store";
+import {
+  accessTokenState,
+  isLoadedState,
+  restoreAccessTokenLoadable,
+  userInfoState,
+} from "../../../commons/store";
 
 export default function ApolloSetting(props) {
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
+  const [isLoaded, setIsLoaded] = useRecoilState(isLoadedState);
   const [, setUserInfo] = useRecoilState(userInfoState);
+  const restoreAccessToken = useRecoilValueLoadable(restoreAccessTokenLoadable);
 
   // //////////////////////////////////////////////////////////////////
 
@@ -35,14 +42,22 @@ export default function ApolloSetting(props) {
 
   // 3. 세번째 방법!!!
   useEffect(() => {
-    // 옛날방식
+    // 1. 옛날방식
     // const accessToken = localStorage.getItem("accessToken");
     // const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
     // setAccessToken(accessToken || "");
     // setUserInfo(userInfo);
-
     // accessToken 재발급받아서 state에 넣어주기
-    getAccessToken().then((newAccessToken) => {
+
+    // 2. 로딩방식
+    // setIsLoaded(true);
+    // getAccessToken().then((newAccessToken) => {
+    //   setAccessToken(newAccessToken);
+    //   setIsLoaded(false);
+    // });
+
+    // 3. 글로벌 프로미스 방식
+    restoreAccessToken.toPromise().then((newAccessToken) => {
       setAccessToken(newAccessToken);
     });
   }, []);
