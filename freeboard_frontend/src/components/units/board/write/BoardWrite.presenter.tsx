@@ -6,6 +6,7 @@ import Uploads01 from "../../../commons/uploads/01/Uploads01.container";
 import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteUI(props: IBoardWriteUIProps) {
+  console.log(props.fileUrls, "sdfsdfsdf");
   return (
     <>
       {props.isOpen && (

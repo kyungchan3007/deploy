@@ -108,6 +108,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
     newFileUrls[index] = fileUrl;
     setFileUrls(newFileUrls);
   };
+  console.log(fileUrls, "sdfsdf");
 
   const onClickSubmit = async () => {
     if (writer === "") {
@@ -206,6 +207,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       setFileUrls([...props.data?.fetchBoard.images]);
     }
   }, [props.data]);
+
+  console.log(fileUrls, "sdfsdf");
 
   return (
     <BoardWriteUI
